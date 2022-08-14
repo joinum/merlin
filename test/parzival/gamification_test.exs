@@ -1,12 +1,12 @@
-defmodule Parzival.GamificationTest do
-  use Parzival.DataCase
+defmodule Merlin.GamificationTest do
+  use Merlin.DataCase
 
-  alias Parzival.Gamification
+  alias Merlin.Gamification
 
   describe "curriculums" do
-    alias Parzival.Gamification.Curriculum
+    alias Merlin.Gamification.Curriculum
 
-    import Parzival.GamificationFixtures
+    import Merlin.GamificationFixtures
 
     @invalid_attrs %{summary: nil}
 

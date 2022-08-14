@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateConnections do
+defmodule Merlin.Repo.Migrations.CreateConnections do
   use Ecto.Migration
 
   def change do

@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.OfferLiveTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.OfferLiveTest do
+  use MerlinWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Parzival.CompaniesFixtures
+  import Merlin.CompaniesFixtures
 
   @create_attrs %{maximum_salary: 42, minimum_salary: 42, title: "some title", type: "some type"}
   @update_attrs %{

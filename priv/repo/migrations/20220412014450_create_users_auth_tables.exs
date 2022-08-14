@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateUsersAuthTables do
+defmodule Merlin.Repo.Migrations.CreateUsersAuthTables do
   use Ecto.Migration
 
   def change do

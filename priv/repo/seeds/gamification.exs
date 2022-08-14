@@ -1,13 +1,10 @@
-defmodule Parzival.Repo.Seeds.Gamification do
+defmodule Merlin.Repo.Seeds.Gamification do
   import Ecto.Query
 
-  alias Parzival.Repo
-  alias Parzival.Accounts.User
-  alias Parzival.Gamification
-  alias Parzival.Gamification.Curriculum
-  alias Parzival.Gamification.Mission
-  alias Parzival.Gamification.Mission.Difficulty
-  alias Parzival.Gamification.Mission.Task
+  alias Merlin.Repo
+  alias Merlin.Accounts.User
+  alias Merlin.Gamification
+  alias Merlin.Gamification.Curriculum
 
   @education_titles File.read!("priv/fake/uminho_courses.txt") |> String.split("\n")
   @languages File.read!("priv/fake/languages.txt") |> String.split("\n")
@@ -15,10 +12,6 @@ defmodule Parzival.Repo.Seeds.Gamification do
 
   def run do
     seed_curriculums()
-    seed_difficulties()
-    seed_missions()
-    seed_tasks()
-    seed_redeem_tasks()
   end
 
   def seed_curriculums do
@@ -148,125 +141,6 @@ defmodule Parzival.Repo.Seeds.Gamification do
     end
   end
 
-  def seed_difficulties do
-    case Repo.all(Difficulty) do
-      [] ->
-        [
-          %{
-            name: "Easy",
-            color: "green"
-          },
-          %{
-            name: "Medium",
-            color: "orange"
-          },
-          %{
-            name: "Hard",
-            color: "red"
-          },
-          %{
-            name: "Exclusive",
-            color: "purple"
-          }
-        ]
-        |> Enum.each(&insert_difficulty/1)
-
-      _ ->
-        Mix.shell().error("Found Difficulties, aborting seeding difficulties.")
-    end
-  end
-
-  def insert_difficulty(data) do
-    %Difficulty{}
-    |> Difficulty.changeset(data)
-    |> Repo.insert!()
-  end
-
-  def seed_missions do
-    case Repo.all(Mission) do
-      [] ->
-        difficulties =
-          Difficulty
-          |> Repo.all()
-
-        for _n <- 1..Enum.random(10..30) do
-          Mission.changeset(%Mission{}, %{
-            title: Faker.Lorem.sentence(5..10),
-            description: Faker.Lorem.sentence(20..40),
-            tokens: Enum.random(400..600),
-            exp: Enum.random(100..800),
-            level: Enum.random(1..10),
-            difficulty_id: Enum.random(difficulties).id,
-            start:
-              Faker.NaiveDateTime.between(
-                ~N[2022-06-28 09:30:00.000000],
-                ~N[2022-06-28 14:00:00.000000]
-              ),
-            finish:
-              Faker.DateTime.between(
-                ~N[2022-06-28 14:00:00.000000],
-                ~N[2022-06-28 23:59:00.000000]
-              )
-          })
-          |> Repo.insert!()
-        end
-
-      _ ->
-        Mix.shell().error("Found Missions, aborting seeding missions.")
-    end
-  end
-
-  def seed_tasks do
-    case Repo.all(Task) do
-      [] ->
-        missions =
-          Mission
-          |> Repo.all()
-
-        for mission <- missions do
-          for _n <- 1..Enum.random(1..5) do
-            Task.changeset(%Task{}, %{
-              title: Faker.Lorem.sentence(5..10),
-              description: Faker.Lorem.sentence(20..40),
-              tokens: Enum.random(100..200),
-              exp: Enum.random(200..500),
-              mission_id: mission.id
-            })
-            |> Repo.insert!()
-          end
-        end
-
-      _ ->
-        Mix.shell().error("Found Tasks, aborting seeding tasks")
-    end
-  end
-
-  def seed_redeem_tasks do
-    attendees =
-      User
-      |> where(role: :attendee)
-      |> Repo.all()
-
-    staffs =
-      User
-      |> where(role: :staff)
-      |> Repo.all()
-
-    for attendee <- attendees do
-      missions =
-        Repo.all(
-          from m in Mission,
-            where: m.level <= ^Gamification.calc_level(attendee.exp),
-            preload: :tasks
-        )
-
-      for mission <- Enum.take_random(missions, Enum.random(1..Enum.count(missions))) do
-        for task <- Enum.take_random(mission.tasks, Enum.random(1..Enum.count(mission.tasks))) do
-          Gamification.redeem_task(attendee, task, Enum.random(staffs))
-        end
-      end
-    end
-  end
 end
 
-Parzival.Repo.Seeds.Gamification.run()
+Merlin.Repo.Seeds.Gamification.run()

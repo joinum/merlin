@@ -1,10 +1,10 @@
-defmodule Parzival.AccountsTest do
-  use Parzival.DataCase
+defmodule Merlin.AccountsTest do
+  use Merlin.DataCase
 
-  alias Parzival.Accounts
+  alias Merlin.Accounts
 
-  import Parzival.AccountsFixtures
-  alias Parzival.Accounts.{User, UserToken}
+  import Merlin.AccountsFixtures
+  alias Merlin.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

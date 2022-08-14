@@ -1,4 +1,4 @@
-defmodule ParzivalWeb.ConnCase do
+defmodule MerlinWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule ParzivalWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ParzivalWeb.ConnCase, async: true`, although
+  by setting `use MerlinWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -23,17 +23,17 @@ defmodule ParzivalWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import ParzivalWeb.ConnCase
+      import MerlinWeb.ConnCase
 
-      alias ParzivalWeb.Router.Helpers, as: Routes
+      alias MerlinWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint ParzivalWeb.Endpoint
+      @endpoint MerlinWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = SQL.Sandbox.start_owner!(Parzival.Repo, shared: not tags[:async])
+    pid = SQL.Sandbox.start_owner!(Merlin.Repo, shared: not tags[:async])
     on_exit(fn -> SQL.Sandbox.stop_owner(pid) end)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
@@ -47,7 +47,7 @@ defmodule ParzivalWeb.ConnCase do
   test context.
   """
   def register_and_log_in_user(%{conn: conn}) do
-    user = Parzival.AccountsFixtures.user_fixture()
+    user = Merlin.AccountsFixtures.user_fixture()
     %{conn: log_in_user(conn, user), user: user}
   end
 
@@ -57,7 +57,7 @@ defmodule ParzivalWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = Parzival.Accounts.generate_user_session_token(user)
+    token = Merlin.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

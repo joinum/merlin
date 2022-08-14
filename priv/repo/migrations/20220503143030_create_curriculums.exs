@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateCurriculums do
+defmodule Merlin.Repo.Migrations.CreateCurriculums do
   use Ecto.Migration
 
   def change do

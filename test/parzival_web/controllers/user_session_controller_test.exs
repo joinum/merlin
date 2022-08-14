@@ -1,7 +1,7 @@
-defmodule ParzivalWeb.UserSessionControllerTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserSessionControllerTest do
+  use MerlinWeb.ConnCase, async: true
 
-  import Parzival.AccountsFixtures
+  import Merlin.AccountsFixtures
 
   setup do
     %{user: user_fixture()}
@@ -50,7 +50,7 @@ defmodule ParzivalWeb.UserSessionControllerTest do
           }
         })
 
-      assert conn.resp_cookies["_parzival_web_user_remember_me"]
+      assert conn.resp_cookies["_merlin_web_user_remember_me"]
       assert redirected_to(conn) == "/"
     end
 

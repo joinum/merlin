@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.CurriculumLiveTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.CurriculumLiveTest do
+  use MerlinWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Parzival.GamificationFixtures
+  import Merlin.GamificationFixtures
 
   @create_attrs %{summary: "some summary"}
   @update_attrs %{summary: "some updated summary"}

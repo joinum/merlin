@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateQRCodes do
+defmodule Merlin.Repo.Migrations.CreateQRCodes do
   use Ecto.Migration
 
   def change do

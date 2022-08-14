@@ -1,0 +1,213 @@
+<div aria-live="assertive" class="flex fixed inset-0 z-50 flex-col gap-y-2 items-end py-6 px-4 pointer-events-none sm:items-start sm:py-16 sm:px-6">
+  <%= for {key, message} <- @flash do %>
+    <div class="flex flex-col items-center space-y-4 w-full sm:items-end">
+      <div class="overflow-hidden w-full max-w-sm bg-white rounded-lg ring-1 ring-black ring-opacity-5 shadow-lg pointer-events-auto">
+        <div class="p-4">
+          <div class="flex items-start">
+            <div class="flex-shrink-0">
+              <%= case key do
+                "info" ->
+                  ~H"""
+                  <Heroicons.Solid.information_circle class="w-6 h-6 text-blue-400" />
+                  """
+
+                "success" ->
+                  ~H"""
+                  <Heroicons.Solid.check_circle class="w-6 h-6 text-green-400" />
+                  """
+
+                "warning" ->
+                  ~H"""
+                  <Heroicons.Solid.exclamation class="w-6 h-6 text-yellow-400" />
+                  """
+
+                "error" ->
+                  ~H"""
+                  <Heroicons.Solid.x_circle class="w-6 h-6 text-red-400" />
+                  """
+              end %>
+            </div>
+            <div class="flex-1 pt-0.5 ml-3 w-0">
+              <%= if is_binary(message) do %>
+                <p class="text-sm font-medium text-gray-900">
+                  <%= live_flash(@flash, key) %>
+                </p>
+              <% else %>
+                <p class="text-sm font-medium text-gray-900">
+                  <%= message.title %>
+                </p>
+                <p class="mt-1 text-sm text-gray-500">
+                  <%= message.description %>
+                </p>
+              <% end %>
+            </div>
+            <div class="flex flex-shrink-0 ml-4">
+              <button phx-click="lv:clear-flash" phx-value-key={key} class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:ring-2 focus:ring-offset-2 focus:outline-none focus:ring-eeg-red">
+                <span class="sr-only">Close</span>
+                <Heroicons.Solid.x class="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div x-data="{ navbar: false }" class="flex relative flex-col min-h-screen">
+  <!-- Navbar -->
+  <%= render("_desktop_live_navbar.html", assigns) %>
+
+  <%= render("_mobile_live_navbar.html", assigns) %>
+
+  <div class="flex flex-col mx-auto mt-16 w-full lg:flex-row xl:px-8 max-w-[1380px]">
+    <div class="relative flex-shrink-0 w-72 bg-white max-w-[400px]">
+      <div class="flex relative top-0 flex-col justify-between pt-10 pr-6 pb-5 pl-4 w-72 sm:pl-6 lg:fixed lg:top-16 lg:h-screen xl:pl-0 max-w-[400px]">
+        <div class="flex relative flex-col gap-y-4">
+          <div class="block space-y-8">
+            <!-- Profile -->
+            <div class="flex flex-row items-center space-x-3">
+              <div class="flex-shrink-0 w-14 h-14">
+                <%= if is_nil(@current_user.picture) do %>
+                  <span class="inline-flex justify-center items-center w-14 h-14 rounded-full bg-secondary">
+                    <span class="text-xl font-medium leading-none text-white select-none">
+                      <%= extract_initials(@current_user.name) %>
+                    </span>
+                  </span>
+                <% else %>
+                  <div class="relative flex-shrink-0 w-14 h-14 bg-white rounded-full">
+                    <img src={Merlin.Uploaders.ProfilePicture.url({@current_user.picture, @current_user}, :medium)} class="object-center w-14 h-14 rounded-full" />
+                  </div>
+                <% end %>
+              </div>
+              <div class="flex overflow-hidden flex-col w-full">
+                <span class="inline-block overflow-hidden w-full text-base font-semibold text-gray-900 whitespace-nowrap text-ellipsis">
+                  <%= @current_user.name %>
+                </span>
+                <span class="inline-block overflow-hidden w-full text-sm text-gray-900 whitespace-nowrap text-ellipsis">
+                  <%= case @current_user.role do %>
+                    <% :attendee -> %>
+                      <%= @current_user.cycle %> in <%= @current_user.course %>
+                    <% :recruiter -> %>
+                      <%= @current_user.company.name %>
+                    <% _ -> %>
+                      <%= String.upcase(Atom.to_string(@current_user.role)) %>
+                  <% end %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="hidden gap-x-6 mb-2 lg:flex lg:gap-x-4">
+            <%= link to: "https://www.di.uminho.pt/" do %>
+              <img class="w-14 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/di.svg")} alt="DI Logo" />
+            <% end %>
+            <%= link to: "https://www.ecum.uminho.pt/pt" do %>
+              <img class="w-14 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/ecum.svg")} alt="DI Logo" />
+            <% end %>
+          </div>
+          <div class="hidden gap-x-2 justify-center items-center mb-12 lg:flex lg:gap-x-4">
+            <%= link to: "https://cesium.di.uminho.pt/" do %>
+              <img class="w-20 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/cesium.svg")} alt="CeSIUM Logo" />
+            <% end %>
+            <%= link to: "https://necc.di.uminho.pt/" do %>
+              <img class="w-20 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/necc.svg")} alt="NECC Logo" />
+            <% end %>
+            <%= link to: "https://nefum.di.uminho.pt/" do %>
+              <img class="w-16 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/nefum.svg")} alt="NEFUM Logo" />
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full lg:border-l lg:border-gray-200 content-height">
+      <%= @inner_content %>
+    </div>
+
+    <%= if @current_page == :dashboard do %>
+      <!-- Right Collumn -->
+      <div class="hidden pr-4 pb-6 pl-6 w-full bg-white border-t border-gray-200 sm:pr-6 lg:block lg:flex-shrink-0 lg:pb-0 lg:w-72 lg:border-t-0 lg:border-l xl:pr-0">
+        <section aria-labelledby="announcements-title">
+          <div class="overflow-hidden">
+            <div class="">
+              <h2 class="pt-6 text-base font-medium text-gray-900" id="announcements-title">
+                Announcements
+              </h2>
+              <div class="flow-root mt-1">
+                <ul role="list" class="divide-y divide-gray-200">
+                  <%= for announcement <- @announcements do %>
+                    <li class="py-5">
+                      <%= live_patch to: Routes.announcement_show_path(@socket, :show, announcement), class: "group" do %>
+                        <div>
+                          <h3 class="text-sm font-semibold text-gray-800 group-hover:underline group-focus:outline-none">
+                            <%= announcement.title %>
+                          </h3>
+                          <article class="mt-1 text-sm text-gray-600 line-clamp-4">
+                            <%= raw(Earmark.as_html!(String.slice(announcement.text, 0, 200) <> "...")) %>
+                          </article>
+                          <div class="flex flex-shrink-0 justify-between mt-4">
+                            <div class="flex items-center">
+                              <%= if is_nil(announcement.author.picture) do %>
+                                <span class="inline-flex justify-center items-center mr-2 w-6 h-6 bg-gray-500 rounded-full">
+                                  <span class="text-xs font-medium leading-none text-white">
+                                    <%= extract_initials(announcement.author.name) %>
+                                  </span>
+                                </span>
+                              <% else %>
+                                <div class="relative flex-shrink-0 mr-2 w-6 h-6 bg-white rounded-full">
+                                  <img src={Merlin.Uploaders.ProfilePicture.url({announcement.author.picture, announcement.author}, :medium)} class="object-center absolute w-6 h-6 rounded-full" />
+                                </div>
+                              <% end %>
+                              <p class="text-sm text-gray-500">
+                                <%= extract_first_last_name(announcement.author.name) %>
+                              </p>
+                            </div>
+                            <div class="flex">
+                              <Heroicons.Solid.calendar class="w-5 h-5 text-gray-500" />
+                              <p class="block pl-1.5 text-sm text-gray-600">
+                                <%= relative_datetime(announcement.inserted_at) %>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="my-6">
+                <%= live_patch to: Routes.announcement_index_path(@socket, :index), class: "w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
+                  View all
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    <% end %>
+
+    <footer class="flex flex-col justify-center items-center my-4 lg:hidden">
+      <div class="flex flex-row gap-x-4 justify-center items-center">
+        <%= link to: "https://www.di.uminho.pt/" do %>
+          <img class="w-16 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/di.svg")} alt="DI Logo" />
+        <% end %>
+        <%= link to: "https://www.ecum.uminho.pt/pt" do %>
+          <img class="h-auto opacity-30 hover:opacity-40 w-[70px]" src={Routes.static_path(@socket, "/images/logos/black/ecum.svg")} alt="DI Logo" />
+        <% end %>
+      </div>
+      <div class="flex flex-row gap-x-4 justify-center items-center my-4">
+        <%= link to: "https://cesium.di.uminho.pt/" do %>
+          <img class="w-20 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/cesium.svg")} alt="CeSIUM Logo" />
+        <% end %>
+        <%= link to: "https://necc.di.uminho.pt/" do %>
+          <img class="w-20 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/necc.svg")} alt="NECC Logo" />
+        <% end %>
+        <%= link to: "https://nefum.di.uminho.pt/" do %>
+          <img class="w-16 h-auto opacity-30 hover:opacity-40" src={Routes.static_path(@socket, "/images/logos/black/nefum.svg")} alt="NEFUM Logo" />
+        <% end %>
+      </div>
+    </footer>
+  </div>
+</div>

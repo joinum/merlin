@@ -1,23 +1,8 @@
-defmodule Parzival.ToolsFixtures do
+defmodule Merlin.ToolsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Parzival.Tools` context.
+  entities via the `Merlin.Tools` context.
   """
-
-  @doc """
-  Generate a faq.
-  """
-  def faq_fixture(attrs \\ %{}) do
-    {:ok, faq} =
-      attrs
-      |> Enum.into(%{
-        answer: "some answer",
-        question: "some question"
-      })
-      |> Parzival.Tools.create_faq()
-
-    faq
-  end
 
   @doc """
   Generate a announcement.
@@ -29,7 +14,7 @@ defmodule Parzival.ToolsFixtures do
         text: "some text",
         title: "some title"
       })
-      |> Parzival.Tools.create_announcement()
+      |> Merlin.Tools.create_announcement()
 
     announcement
   end
@@ -43,7 +28,7 @@ defmodule Parzival.ToolsFixtures do
       |> Enum.into(%{
         text: "some text"
       })
-      |> Parzival.Tools.create_post()
+      |> Merlin.Tools.create_post()
 
     post
   end

@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateAnnouncements do
+defmodule Merlin.Repo.Migrations.CreateAnnouncements do
   use Ecto.Migration
 
   def change do

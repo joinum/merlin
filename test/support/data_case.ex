@@ -1,4 +1,4 @@
-defmodule Parzival.DataCase do
+defmodule Merlin.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Parzival.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Parzival.DataCase, async: true`, although
+  by setting `use Merlin.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,17 +20,17 @@ defmodule Parzival.DataCase do
 
   using do
     quote do
-      alias Parzival.Repo
+      alias Merlin.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Parzival.DataCase
+      import Merlin.DataCase
     end
   end
 
   setup tags do
-    pid = SQL.Sandbox.start_owner!(Parzival.Repo, shared: not tags[:async])
+    pid = SQL.Sandbox.start_owner!(Merlin.Repo, shared: not tags[:async])
     on_exit(fn -> SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

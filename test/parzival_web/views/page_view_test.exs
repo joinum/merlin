@@ -1,3 +1,3 @@
-defmodule ParzivalWeb.PageViewTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.PageViewTest do
+  use MerlinWeb.ConnCase, async: true
 end

@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.LevelLiveTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.LevelLiveTest do
+  use MerlinWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Parzival.CompaniesFixtures
+  import Merlin.CompaniesFixtures
 
   @create_attrs %{color: "some color", name: "some name"}
   @update_attrs %{color: "some updated color", name: "some updated name"}

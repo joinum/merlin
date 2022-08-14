@@ -1,7 +1,7 @@
-defmodule ParzivalWeb.UserRegistrationControllerTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserRegistrationControllerTest do
+  use MerlinWeb.ConnCase, async: true
 
-  import Parzival.AccountsFixtures
+  import Merlin.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do
