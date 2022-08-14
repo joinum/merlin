@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Seeds do
+defmodule Merlin.Repo.Seeds do
   @moduledoc """
   Script for populating the database. You can run it as:
     $ mix run priv/repo/seeds.exs # or mix ecto.seed
@@ -11,7 +11,6 @@ defmodule Parzival.Repo.Seeds do
       "accounts.exs",
       "offers.exs",
       "gamification.exs",
-      "store.exs",
       "tools.exs"
     ]
     |> Enum.each(fn file ->
@@ -20,4 +19,4 @@ defmodule Parzival.Repo.Seeds do
   end
 end
 
-Parzival.Repo.Seeds.run()
+Merlin.Repo.Seeds.run()

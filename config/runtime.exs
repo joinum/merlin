@@ -9,14 +9,14 @@ import Config
 
 # Start the phoenix server if environment is set and running in a release
 if System.get_env("PHX_SERVER") do
-  config :parzival, ParzivalWeb.Endpoint, server: true
+  config :merlin, MerlinWeb.Endpoint, server: true
 end
 
 if config_env() in [:dev, :test] do
   import Dotenvy
   source([".env", ".env.#{config_env()}", ".env.#{config_env()}.local"])
 
-  config :parzival, Parzival.Repo,
+  config :merlin, Merlin.Repo,
     username: env!("DB_USERNAME", :string, "postgres"),
     password: env!("DB_PASSWORD", :string, "postgres"),
     # The MIX_TEST_PARTITION environment variable can be used
@@ -37,7 +37,7 @@ if config_env() == :prod do
 
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
-  config :parzival, Parzival.Repo,
+  config :merlin, Merlin.Repo,
     ssl: true,
     url: database_url,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
@@ -58,7 +58,7 @@ if config_env() == :prod do
   host = System.get_env("PHX_HOST") || "join.di.uminho.pt"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
-  config :parzival, ParzivalWeb.Endpoint,
+  config :merlin, MerlinWeb.Endpoint,
     url: [host: host, port: 443],
     http: [
       # Enable IPv6 and bind on all interfaces.
@@ -82,7 +82,7 @@ if config_env() == :prod do
       environment variable MAILGUN_API_KEY is missing
       """
 
-  config :parzival,
+  config :merlin,
     mailgun_domain: mailgun_domain,
     mailgun_key: mailgun_api_key
 
@@ -91,7 +91,7 @@ if config_env() == :prod do
   # If you are doing OTP releases, you need to instruct Phoenix
   # to start each relevant endpoint:
   #
-  #     config :parzival, ParzivalWeb.Endpoint, server: true
+  #     config :merlin, MerlinWeb.Endpoint, server: true
   #
   # Then you can assemble a release by calling `mix release`.
   # See `mix help release` for more information.
@@ -102,7 +102,7 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :parzival, Parzival.Mailer,
+  #     config :merlin, Merlin.Mailer,
   #       adapter: Swoosh.Adapters.Mailgun,
   #       api_key: System.get_env("MAILGUN_API_KEY"),
   #       domain: System.get_env("MAILGUN_DOMAIN")

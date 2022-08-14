@@ -1,7 +1,7 @@
-defmodule Parzival.GamificationFixtures do
+defmodule Merlin.GamificationFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Parzival.Gamification` context.
+  entities via the `Merlin.Gamification` context.
   """
 
   @doc """
@@ -13,7 +13,7 @@ defmodule Parzival.GamificationFixtures do
       |> Enum.into(%{
         summary: "some summary"
       })
-      |> Parzival.Gamification.create_curriculum()
+      |> Merlin.Gamification.create_curriculum()
 
     curriculum
   end

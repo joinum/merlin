@@ -1,7 +1,7 @@
-defmodule Parzival.CompaniesFixtures do
+defmodule Merlin.CompaniesFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Parzival.Companies` context.
+  entities via the `Merlin.Companies` context.
   """
 
   @doc """
@@ -16,7 +16,7 @@ defmodule Parzival.CompaniesFixtures do
         title: "some title",
         type: "some type"
       })
-      |> Parzival.Companies.create_offer()
+      |> Merlin.Companies.create_offer()
 
     offer
   end
@@ -31,7 +31,7 @@ defmodule Parzival.CompaniesFixtures do
         description: "some description",
         name: "some name"
       })
-      |> Parzival.Companies.create_company()
+      |> Merlin.Companies.create_company()
 
     company
   end
@@ -46,7 +46,7 @@ defmodule Parzival.CompaniesFixtures do
         color: "some color",
         name: "some name"
       })
-      |> Parzival.Companies.create_offer_type()
+      |> Merlin.Companies.create_offer_type()
 
     offer_type
   end
@@ -61,7 +61,7 @@ defmodule Parzival.CompaniesFixtures do
         color: "some color",
         name: "some name"
       })
-      |> Parzival.Companies.create_offer_time()
+      |> Merlin.Companies.create_offer_time()
 
     offer_time
   end
@@ -73,7 +73,7 @@ defmodule Parzival.CompaniesFixtures do
     {:ok, application} =
       attrs
       |> Enum.into(%{})
-      |> Parzival.Companies.create_application()
+      |> Merlin.Companies.create_application()
 
     application
   end
@@ -88,7 +88,7 @@ defmodule Parzival.CompaniesFixtures do
         color: "some color",
         name: "some name"
       })
-      |> Parzival.Companies.create_level()
+      |> Merlin.Companies.create_level()
 
     level
   end
@@ -100,7 +100,7 @@ defmodule Parzival.CompaniesFixtures do
     {:ok, connection} =
       attrs
       |> Enum.into(%{})
-      |> Parzival.Companies.create_connection()
+      |> Merlin.Companies.create_connection()
 
     connection
   end

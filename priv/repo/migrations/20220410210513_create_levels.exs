@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateLevels do
+defmodule Merlin.Repo.Migrations.CreateLevels do
   use Ecto.Migration
 
   def change do

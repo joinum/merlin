@@ -1,10 +1,10 @@
-defmodule Parzival.Repo.Seeds.Accounts do
-  alias Parzival.Repo
+defmodule Merlin.Repo.Seeds.Accounts do
+  alias Merlin.Repo
 
-  alias Parzival.Accounts.QRCode
-  alias Parzival.Accounts.User
-  alias Parzival.Companies.Company
-  alias Parzival.Companies.Offer
+  alias Merlin.Accounts.QRCode
+  alias Merlin.Accounts.User
+  alias Merlin.Companies.Company
+  alias Merlin.Companies.Offer
 
   @attendees File.read!("priv/fake/attendees.txt") |> String.split("\n")
   @recruiters File.read!("priv/fake/recruiters.txt") |> String.split("\n")
@@ -148,4 +148,4 @@ defmodule Parzival.Repo.Seeds.Accounts do
   end
 end
 
-Parzival.Repo.Seeds.Accounts.run()
+Merlin.Repo.Seeds.Accounts.run()

@@ -1,8 +1,8 @@
-defmodule Parzival.Repo.Seeds.Companies do
-  alias Parzival.Repo
+defmodule Merlin.Repo.Seeds.Companies do
+  alias Merlin.Repo
 
-  alias Parzival.Companies.Company
-  alias Parzival.Companies.Level
+  alias Merlin.Companies.Company
+  alias Merlin.Companies.Level
 
   def run do
     seed_levels()
@@ -76,4 +76,4 @@ defmodule Parzival.Repo.Seeds.Companies do
   end
 end
 
-Parzival.Repo.Seeds.Companies.run()
+Merlin.Repo.Seeds.Companies.run()

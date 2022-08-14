@@ -1,4 +1,4 @@
-defmodule ParzivalWeb.ChannelCase do
+defmodule MerlinWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule ParzivalWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use ParzivalWeb.ChannelCase, async: true`, although
+  by setting `use MerlinWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,15 +22,15 @@ defmodule ParzivalWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import ParzivalWeb.ChannelCase
+      import MerlinWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint ParzivalWeb.Endpoint
+      @endpoint MerlinWeb.Endpoint
     end
   end
 
   setup tags do
-    pid = SQL.Sandbox.start_owner!(Parzival.Repo, shared: not tags[:async])
+    pid = SQL.Sandbox.start_owner!(Merlin.Repo, shared: not tags[:async])
     on_exit(fn -> SQL.Sandbox.stop_owner(pid) end)
     :ok
   end

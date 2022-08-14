@@ -1,15 +1,15 @@
-defmodule Parzival.Repo.Seeds.Offers do
+defmodule Merlin.Repo.Seeds.Offers do
   import Ecto.Query
 
-  alias Parzival.Repo
+  alias Merlin.Repo
 
-  alias Parzival.Accounts.User
-  alias Parzival.Companies.Application
-  alias Parzival.Companies.Company
-  alias Parzival.Companies.Offer
-  alias Parzival.Companies.OfferTime
-  alias Parzival.Companies.OfferType
-  alias Parzival.Tools.Post
+  alias Merlin.Accounts.User
+  alias Merlin.Companies.Application
+  alias Merlin.Companies.Company
+  alias Merlin.Companies.Offer
+  alias Merlin.Companies.OfferTime
+  alias Merlin.Companies.OfferType
+  alias Merlin.Tools.Post
 
   def run do
     seed_types()
@@ -162,4 +162,4 @@ defmodule Parzival.Repo.Seeds.Offers do
   end
 end
 
-Parzival.Repo.Seeds.Offers.run()
+Merlin.Repo.Seeds.Offers.run()

@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.PostLiveTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.PostLiveTest do
+  use MerlinWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Parzival.ToolsFixtures
+  import Merlin.ToolsFixtures
 
   @create_attrs %{text: "some text"}
   @update_attrs %{text: "some updated text"}

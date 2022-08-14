@@ -1,7 +1,7 @@
-defmodule Parzival.AccountsFixtures do
+defmodule Merlin.AccountsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Parzival.Accounts` context.
+  entities via the `Merlin.Accounts` context.
   """
 
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
@@ -18,7 +18,7 @@ defmodule Parzival.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Parzival.Accounts.register_user()
+      |> Merlin.Accounts.register_user()
 
     user
   end

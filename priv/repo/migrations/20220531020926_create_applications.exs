@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateApplications do
+defmodule Merlin.Repo.Migrations.CreateApplications do
   use Ecto.Migration
 
   def change do

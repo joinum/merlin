@@ -1,9 +1,9 @@
-defmodule ParzivalWeb.UserResetPasswordControllerTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserResetPasswordControllerTest do
+  use MerlinWeb.ConnCase, async: true
 
-  alias Parzival.Accounts
-  alias Parzival.Repo
-  import Parzival.AccountsFixtures
+  alias Merlin.Accounts
+  alias Merlin.Repo
+  import Merlin.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

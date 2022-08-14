@@ -1,9 +1,9 @@
-defmodule ParzivalWeb.UserConfirmationControllerTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserConfirmationControllerTest do
+  use MerlinWeb.ConnCase, async: true
 
-  alias Parzival.Accounts
-  alias Parzival.Repo
-  import Parzival.AccountsFixtures
+  alias Merlin.Accounts
+  alias Merlin.Repo
+  import Merlin.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

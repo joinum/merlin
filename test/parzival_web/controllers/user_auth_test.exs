@@ -1,16 +1,16 @@
-defmodule ParzivalWeb.UserAuthTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserAuthTest do
+  use MerlinWeb.ConnCase, async: true
 
-  alias Parzival.Accounts
-  alias ParzivalWeb.UserAuth
-  import Parzival.AccountsFixtures
+  alias Merlin.Accounts
+  alias MerlinWeb.UserAuth
+  import Merlin.AccountsFixtures
 
-  @remember_me_cookie "_parzival_web_user_remember_me"
+  @remember_me_cookie "_merlin_web_user_remember_me"
 
   setup %{conn: conn} do
     conn =
       conn
-      |> Map.replace!(:secret_key_base, ParzivalWeb.Endpoint.config(:secret_key_base))
+      |> Map.replace!(:secret_key_base, MerlinWeb.Endpoint.config(:secret_key_base))
       |> init_test_session(%{})
 
     %{user: user_fixture(), conn: conn}
@@ -65,7 +65,7 @@ defmodule ParzivalWeb.UserAuthTest do
 
     test "broadcasts to the given live_socket_id", %{conn: conn} do
       live_socket_id = "users_sessions:abcdef-token"
-      ParzivalWeb.Endpoint.subscribe(live_socket_id)
+      MerlinWeb.Endpoint.subscribe(live_socket_id)
 
       conn
       |> put_session(:live_socket_id, live_socket_id)

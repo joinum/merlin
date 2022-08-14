@@ -1,12 +1,12 @@
-defmodule Parzival.CompaniesTest do
-  use Parzival.DataCase
+defmodule Merlin.CompaniesTest do
+  use Merlin.DataCase
 
-  alias Parzival.Companies
+  alias Merlin.Companies
 
   describe "offers" do
-    alias Parzival.Companies.Offer
+    alias Merlin.Companies.Offer
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{maximum_salary: nil, minimum_salary: nil, title: nil, type: nil}
 
@@ -75,9 +75,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "companies" do
-    alias Parzival.Companies.Company
+    alias Merlin.Companies.Company
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{description: nil, name: nil}
 
@@ -131,9 +131,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "offer_types" do
-    alias Parzival.Companies.OfferType
+    alias Merlin.Companies.OfferType
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{color: nil, name: nil}
 
@@ -189,9 +189,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "offer_times" do
-    alias Parzival.Companies.OfferTime
+    alias Merlin.Companies.OfferTime
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{color: nil, name: nil}
 
@@ -247,9 +247,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "applications" do
-    alias Parzival.Companies.Application
+    alias Merlin.Companies.Application
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{}
 
@@ -303,9 +303,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "levels" do
-    alias Parzival.Companies.Level
+    alias Merlin.Companies.Level
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{color: nil, name: nil}
 
@@ -359,9 +359,9 @@ defmodule Parzival.CompaniesTest do
   end
 
   describe "connections" do
-    alias Parzival.Companies.Connection
+    alias Merlin.Companies.Connection
 
-    import Parzival.CompaniesFixtures
+    import Merlin.CompaniesFixtures
 
     @invalid_attrs %{}
 

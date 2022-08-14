@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.ConnectionLiveTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.ConnectionLiveTest do
+  use MerlinWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Parzival.CompaniesFixtures
+  import Merlin.CompaniesFixtures
 
   @create_attrs %{}
   @update_attrs %{}

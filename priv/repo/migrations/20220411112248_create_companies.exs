@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateCompanies do
+defmodule Merlin.Repo.Migrations.CreateCompanies do
   use Ecto.Migration
 
   def change do

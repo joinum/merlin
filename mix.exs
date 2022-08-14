@@ -1,7 +1,7 @@
-defmodule Parzival.MixProject do
+defmodule Merlin.MixProject do
   use Mix.Project
 
-  @app :parzival
+  @app :merlin
   @version "1.0.0-beta"
   @name "JOIN"
   @description "Jornadas de Informática"
@@ -26,7 +26,7 @@ defmodule Parzival.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Parzival.Application, []},
+      mod: {Merlin.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

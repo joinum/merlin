@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreateOfferTypes do
+defmodule Merlin.Repo.Migrations.CreateOfferTypes do
   use Ecto.Migration
 
   def change do

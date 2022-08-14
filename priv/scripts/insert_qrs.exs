@@ -4,8 +4,8 @@
 # 0003,6877f018-d1de-4d99-aad9-2aea602e5a03
 #
 # $ mix run priv/scripts/insert_qrs.exs
-alias Parzival.Repo
-alias Parzival.Accounts.QRCode
+alias Merlin.Repo
+alias Merlin.Accounts.QRCode
 
 "codes.csv"
 |> File.read!()

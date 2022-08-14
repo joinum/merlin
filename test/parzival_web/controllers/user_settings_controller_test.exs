@@ -1,8 +1,8 @@
-defmodule ParzivalWeb.UserSettingsControllerTest do
-  use ParzivalWeb.ConnCase, async: true
+defmodule MerlinWeb.UserSettingsControllerTest do
+  use MerlinWeb.ConnCase, async: true
 
-  alias Parzival.Accounts
-  import Parzival.AccountsFixtures
+  alias Merlin.Accounts
+  import Merlin.AccountsFixtures
 
   setup :register_and_log_in_user
 

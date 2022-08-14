@@ -1,4 +1,4 @@
-defmodule Parzival.Repo.Migrations.CreatePosts do
+defmodule Merlin.Repo.Migrations.CreatePosts do
   use Ecto.Migration
 
   def change do

@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :parzival, Parzival.Repo,
+config :merlin, Merlin.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -11,7 +11,7 @@ config :parzival, Parzival.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :parzival, ParzivalWeb.Endpoint,
+config :merlin, MerlinWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {0, 0, 0, 0}, port: 4000],
@@ -50,13 +50,13 @@ config :parzival, ParzivalWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :parzival, ParzivalWeb.Endpoint,
+config :merlin, MerlinWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/(?!uploads).*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/parzival_web/(live|views)/.*(ex)$",
-      ~r"lib/parzival_web/templates/.*(eex)$"
+      ~r"lib/merlin_web/(live|views)/.*(ex)$",
+      ~r"lib/merlin_web/templates/.*(eex)$"
     ]
   ]
 

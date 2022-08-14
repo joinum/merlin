@@ -1,5 +1,5 @@
-defmodule ParzivalWeb.PageControllerTest do
-  use ParzivalWeb.ConnCase
+defmodule MerlinWeb.PageControllerTest do
+  use MerlinWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
