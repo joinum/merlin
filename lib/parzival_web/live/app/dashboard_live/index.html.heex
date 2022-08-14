@@ -134,59 +134,6 @@
           <!-- Curriculum -->
           <.curriculum curriculum={@curriculum} user={@user} socket={@socket} current_page={@current_page} />
         <% end %>
-        <!-- Rankings -->
-        <div x-bind:class="option =='rankings' ? 'block max-w-5xl px-4 py-4 mx-auto border-b border-gray-200 sm:px-6 lg:px-8' : 'hidden'">
-          <h2 class="pt-6 text-base font-medium text-gray-900" id="rankings-title">
-            Current Rankings
-          </h2>
-          <div class="flow-root mt-1">
-            <ul role="list" class="divide-y divide-gray-200">
-              <%= for user <- @users do %>
-                <%= live_patch to: Routes.profile_show_path(@socket, :show, user), class: "group" do %>
-                  <li id={"user-#{user.id}"} class="relative">
-                    <div class="flex justify-between">
-                      <div class="py-4 text-sm whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 w-10 h-10 lg:w-8 lg:h-8">
-                            <%= if is_nil(user.picture) do %>
-                              <span class="inline-flex justify-center items-center w-10 h-10 rounded-full lg:w-8 lg:h-8 bg-secondary">
-                                <span class="text-lg font-medium leading-none text-white lg:text-sm">
-                                  <%= extract_initials(user.name) %>
-                                </span>
-                              </span>
-                            <% else %>
-                              <div class="relative flex-shrink-0 w-10 h-10 bg-white rounded-full lg:w-8 lg:h-8">
-                                <img src={Parzival.Uploaders.ProfilePicture.url({user.picture, user}, :medium)} class="object-center w-10 h-10 rounded-full lg:w-8 lg:h-8" />
-                              </div>
-                            <% end %>
-                          </div>
-                          <div class="ml-4">
-                            <div class="font-medium text-gray-900 group-hover:underline group-focus:outline-none">
-                              <%= user.name %>
-                            </div>
-                            <div class="flex">
-                              <div class="text-gray-500">
-                                LVL <%= calc_level(user) %>
-                              </div>
-                              <div class="ml-2 text-gray-400">
-                                <%= user.exp %> EXP
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                <% end %>
-              <% end %>
-            </ul>
-          </div>
-          <div class="my-6">
-            <%= live_patch to: Routes.leaderboard_index_path(@socket, :index), class: "w-full flex justify-center items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50" do %>
-              View all
-            <% end %>
-          </div>
-        </div>
         <!-- Announcements -->
         <div x-bind:class="option =='announcements' ? 'block max-w-5xl px-4 py-4 mx-auto border-b border-gray-200 sm:px-6 lg:px-8' : 'hidden'">
           <h2 class="pt-6 text-base font-medium text-gray-900" id="announcements-title">

@@ -97,30 +97,6 @@
               </div>
             </div>
           </div>
-          <%= if @current_user.role == :attendee do %>
-            <div class="flex flex-col gap-y-1">
-              <span class="text-lg">
-                LVL <%= Gamification.calc_level(@current_user.exp) %>
-              </span>
-              <div class="overflow-hidden w-full h-6 rounded-md bg-quaternary">
-                <div style={"width: #{@current_user.exp / Gamification.calc_next_level_exp(@current_user.exp) * 100}%; transition: width 0.6s"} class="h-full bg-secondary" />
-              </div>
-              <span class="text-sm font-light text-right text-gray-300">
-                <%= @current_user.exp %>/<%= Gamification.calc_next_level_exp(@current_user.exp) %> EXP
-              </span>
-            </div>
-            <span>
-              💰 <%= @current_user.balance %>
-            </span>
-            <%= live_redirect to: Routes.mission_index_path(@socket, :index) do %>
-              <div class="flex gap-x-2 text-gray-300 select-none hover:text-gray-400 flew-row">
-                <Heroicons.Solid.clipboard_check class="w-5 h-5" />
-                <span>
-                  <%= Enum.count(@current_user.missions) %> missions completed
-                </span>
-              </div>
-            <% end %>
-          <% end %>
         </div>
         <div class="flex flex-col">
           <div class="hidden gap-x-6 mb-2 lg:flex lg:gap-x-4">
@@ -153,60 +129,6 @@
     <%= if @current_page == :dashboard do %>
       <!-- Right Collumn -->
       <div class="hidden pr-4 pb-6 pl-6 w-full bg-white border-t border-gray-200 sm:pr-6 lg:block lg:flex-shrink-0 lg:pb-0 lg:w-72 lg:border-t-0 lg:border-l xl:pr-0">
-        <!-- Rankings -->
-        <section aria-labelledby="rankings-title">
-          <div class="overflow-hidden">
-            <div class="">
-              <h2 class="pt-6 text-base font-medium text-gray-900" id="rankings-title">
-                Current Rankings
-              </h2>
-              <div class="flow-root mt-1">
-                <ul role="list" class="divide-y divide-gray-200">
-                  <%= for user <- @users do %>
-                    <%= live_patch to: Routes.profile_show_path(@socket, :show, user), class: "group" do %>
-                      <li id={"user-#{user.id}"} class="relative">
-                        <div class="flex justify-between">
-                          <div class="py-4 text-sm whitespace-nowrap">
-                            <div class="flex items-center">
-                              <div class="flex-shrink-0 w-10 h-10 lg:w-8 lg:h-8">
-                                <%= if is_nil(user.picture) do %>
-                                  <div class="relative flex-shrink-0 w-10 h-10 rounded-full ring-4 ring-white lg:w-8 lg:h-8">
-                                    <span class="inline-flex justify-center items-center w-10 h-10 rounded-full lg:w-8 lg:h-8 bg-secondary">
-                                      <span class="text-lg font-medium leading-none text-white lg:text-sm">
-                                        <%= extract_initials(user.name) %>
-                                      </span>
-                                    </span>
-                                  </div>
-                                <% else %>
-                                  <div class="relative flex-shrink-0 w-10 h-10 bg-white rounded-full ring-2 ring-white lg:w-8 lg:h-8">
-                                    <img src={Parzival.Uploaders.ProfilePicture.url({user.picture, user}, :medium)} class="object-center absolute w-10 h-10 rounded-full lg:w-8 lg:h-8" />
-                                  </div>
-                                <% end %>
-                              </div>
-                              <div class="ml-4">
-                                <div class="font-medium text-gray-900 group-hover:underline group-focus:outline-none">
-                                  <%= user.name %>
-                                </div>
-                                <div class="flex">
-                                  <div class="text-gray-500">
-                                    LVL <%= calc_level(user) %>
-                                  </div>
-                                  <div class="ml-2 text-gray-400">
-                                    <%= user.exp %> EXP
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
         <section aria-labelledby="announcements-title">
           <div class="overflow-hidden">
             <div class="">

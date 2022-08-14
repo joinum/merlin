@@ -58,11 +58,6 @@
           Profile
         </div>
       <% end %>
-      <%= link(to: Routes.landing_home_index_path(@socket, :index), class: "w-full text-center hover:text-white text-white font-medium text-sm") do %>
-        <div class="py-2 px-3 w-full rounded-md hover:bg-tertiary" role="none">
-          Home
-        </div>
-      <% end %>
       <%= link(to: Routes.user_session_path(@socket, :delete), method: :delete, class: "w-full text-center hover:text-white text-white font-medium text-sm") do %>
         <div class="py-2 px-3 w-full rounded-md hover:bg-tertiary" role="none">
           Sign Out

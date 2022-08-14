@@ -19,57 +19,6 @@ defmodule ParzivalWeb.Config do
     end
   end
 
-  def pages do
-    base_pages()
-  end
-
-  defp base_pages do
-    [
-      %{
-        key: :home,
-        title: "Home",
-        url: Routes.landing_home_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :schedule,
-        title: "Schedule",
-        url: Routes.landing_schedule_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :missions,
-        title: "Missions",
-        url: Routes.landing_missions_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :speakers,
-        title: "Speakers",
-        url: Routes.landing_speakers_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :faqs,
-        title: "Faqs",
-        url: Routes.landing_faqs_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :team,
-        title: "Team",
-        url: Routes.landing_team_index_path(@conn, :index),
-        tabs: []
-      },
-      %{
-        key: :login,
-        title: "Login",
-        url: Routes.user_session_path(@conn, :new),
-        tabs: []
-      }
-    ]
-  end
-
   defp live_pages(conn) do
     [
       %{
@@ -84,18 +33,6 @@ defmodule ParzivalWeb.Config do
   def attendee_pages(conn) do
     [
       %{
-        key: :missions,
-        title: "Missions",
-        url: Routes.mission_index_path(conn, :index),
-        tabs: []
-      },
-      %{
-        key: :leaderboard,
-        title: "Leaderboard",
-        url: Routes.leaderboard_index_path(conn, :index),
-        tabs: []
-      },
-      %{
         key: :jobs,
         title: "Jobs",
         url: Routes.offer_index_path(conn, :index),
@@ -105,18 +42,6 @@ defmodule ParzivalWeb.Config do
         key: :companies,
         title: "Companies",
         url: Routes.company_index_path(conn, :index),
-        tabs: []
-      },
-      %{
-        key: :store,
-        title: "Store",
-        url: Routes.product_index_path(conn, :index),
-        tabs: []
-      },
-      %{
-        key: :vault,
-        title: "Vault",
-        url: Routes.order_index_path(conn, :index),
         tabs: []
       },
       %{
@@ -153,41 +78,12 @@ defmodule ParzivalWeb.Config do
         title: "Announcements",
         url: Routes.announcement_index_path(conn, :index),
         tabs: []
-      },
-      %{
-        key: :scanner,
-        title: "Scan",
-        url: Routes.admin_scanner_index_path(conn, :index),
-        tabs: []
       }
     ]
   end
 
   def admin_pages(conn) do
     [
-      %{
-        key: :missions,
-        title: "Gamification",
-        url: Routes.mission_index_path(conn, :index),
-        tabs: [
-          %{
-            key: :missions,
-            title: "Missions",
-            url: Routes.mission_index_path(conn, :index)
-          },
-          %{
-            key: :missions,
-            title: "Leaderboard",
-            url: Routes.leaderboard_index_path(conn, :index),
-            tabs: []
-          },
-          %{
-            key: :missions,
-            title: "Difficulties",
-            url: Routes.admin_difficulty_index_path(conn, :index)
-          }
-        ]
-      },
       %{
         key: :jobs,
         title: "Jobs",
@@ -226,12 +122,6 @@ defmodule ParzivalWeb.Config do
             url: Routes.admin_level_index_path(conn, :index)
           }
         ]
-      },
-      %{
-        key: :store,
-        title: "Store",
-        url: Routes.product_index_path(conn, :index),
-        tabs: []
       },
       %{
         key: :accounts,
@@ -281,22 +171,11 @@ defmodule ParzivalWeb.Config do
         url: Routes.admin_faqs_index_path(conn, :index),
         tabs: [
           %{
-            key: :faqs,
-            title: "FAQs",
-            url: Routes.admin_faqs_index_path(conn, :index)
-          },
-          %{
             key: :announcements,
             title: "Announcements",
             url: Routes.announcement_index_path(conn, :index)
           }
         ]
-      },
-      %{
-        key: :scanner,
-        title: "Scan",
-        url: Routes.admin_scanner_index_path(conn, :index),
-        tabs: []
       }
     ]
   end
